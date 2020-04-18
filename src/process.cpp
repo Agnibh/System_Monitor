@@ -29,7 +29,14 @@ string Process::Command() { return LinuxParser::Command(Pid());}
 
 // TODO: Return this process's memory utilization
 string Process::Ram() { 
-    long mem = std::stol(LinuxParser::Ram(Pid()))/1000;
+    long mem = 0;
+    try{
+        mem = std::stol(LinuxParser::Ram(Pid()))/1000;
+    }
+    catch(...){
+        mem = 0;
+    }
+    
     return std::to_string(mem);}
 
 
